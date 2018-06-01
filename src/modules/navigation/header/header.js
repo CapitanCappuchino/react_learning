@@ -1,33 +1,47 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
+import styled               from 'styled-components';
 import { Link, withRouter } from 'react-router-dom';
+import { connect }          from 'react-redux';
 
-import * as styles from '../../../styles/consts';
-import TextButton from '../../../elements/textButton';
-import RoundedButton from '../../../elements/roundedButton';
+import * as styles          from '../../../styles/consts';
+import TextButton           from '../../../elements/Buttons/textButton';
+import RoundedButton        from '../../../elements/Buttons/roundedButton';
+import { logout }           from '../../../redux/actions/authAction';
 
 class DefaultHeader extends Component{
     constructor(props){
         super(props);
 
         this.state = {
-            isAutintificated: localStorage.getItem('isAutintificated')
+            isAutintificated: this.props.auth.isAutintificated
         }
 
         this.handleLogoutButton = this.handleLogoutButton.bind(this);
+    }
+
+    static getDerivedStateFromProps = (nextProps, prevState) => {
+        if(nextProps.auth.isAutintificated
+            && !prevState.isAutintificated){
+                return{
+                    isAutintificated: true
+                }
+        } else {
+            return null;
+        }
     }
 
     handleLogoutButton = (e) => {
         if(localStorage.getItem('isAutintificated') === 'true'){
             localStorage.clear();
             this.setState({
-                isAutintificated: 'false'
+                isAutintificated: false
             });
+            this.props.logout();
         }
     }
 
     render(){
-        const isAutintificated = localStorage.getItem('isAutintificated');
+        const isAutintificated = this.state.isAutintificated;
         return(
             <Element>
                 <TextButton>
@@ -47,9 +61,9 @@ class DefaultHeader extends Component{
                 </TextButton>
                 <RoundedButton
                     onClick={this.handleLogoutButton}
-                    text={isAutintificated === 'true'
-                        ? <StyledLink inverted to='/'>LOG OUT</StyledLink>
-                        : <StyledLink inverted to='/login'>LOG IN</StyledLink>
+                    text={isAutintificated
+                        ? <StyledLink inverted to='/'>LOGOUT</StyledLink>
+                        : <StyledLink inverted to='/login'>LOGIN</StyledLink>
                     }>
                 </RoundedButton>
             </Element>
@@ -71,4 +85,17 @@ const StyledLink = styled(Link)`
         : styles.mainLight};
 `;
 
-export default withRouter(DefaultHeader);
+const mapStateToProps = (state) => {
+    return{
+        auth: state.auth
+    }
+}
+
+const mapDispatchToProps = (dispath) => {
+    return{
+        logout: () => dispath(logout())
+    }
+}
+
+const Header = withRouter(DefaultHeader);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-import * as styles from '../styles/consts';
+import * as styles from '../../styles/consts';
+import TextButton from './textButton';
 
 class RoundedButton extends Component{
     render(){
         return(
             <Element {...this.props}>
-                { this.props.text }
-                {this.props.children}
+                <ButtonText>
+                    { this.props.text }
+                    {this.props.children}
+                </ButtonText>
             </Element>
         );
     }
 }
-
-export default RoundedButton;
 
 const Element = styled.button`
     background-color: ${props => props.dark
@@ -25,9 +26,17 @@ const Element = styled.button`
         ? styles.main
         : styles.mainLight};
     border-style: solid;
+    margin: 10px;
+`;
+
+const ButtonText = styled.span`
     color: ${props => props.dark
         ? styles.mainLight
         : styles.main};
-
-    margin: 5px;
+    font-family:   ${styles.defaultFontFamily};
+    font-size:     ${styles.defaultFontSize};
+    padding: 5px;
 `;
+
+export default RoundedButton;
+

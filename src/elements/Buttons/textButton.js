@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-import * as styles from '../styles/consts';
+import * as styles from '../../styles/consts';
 
 class TextButton extends Component{
     
@@ -18,6 +18,8 @@ const Element = styled.button`
     border-color: transparent;
     background-color: transparent;
     color: ${styles.mainLight};
+    font-family:   ${styles.defaultFontFamily};
+    font-size:     ${styles.defaultFontSize};
 `;
 
 

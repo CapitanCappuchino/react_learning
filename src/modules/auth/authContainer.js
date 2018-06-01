@@ -9,7 +9,7 @@ class AuthContainer extends Component{
     render(){
         return(
             <Auth 
-                loginRequest={this.props.loginRequest}
+                auth={this.props.auth}
                 login={this.props.login}
             />
         );
@@ -19,7 +19,7 @@ class AuthContainer extends Component{
 const mapStateToPros = (state) => {
     console.log('STATE', state);
     return{
-        loginRequest: state.login
+        auth: state.auth
     }
 };
 

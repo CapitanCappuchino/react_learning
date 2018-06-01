@@ -12,7 +12,7 @@ class Auth extends Component{
         return(
             <Element>
                 <LoginForm 
-                    loginRequest={this.props.loginRequest}
+                    auth={this.props.auth}
                     login={this.props.login}
                 />   
             </Element>

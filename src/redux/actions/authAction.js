@@ -3,42 +3,49 @@ import axios from 'axios';
 import { 
     LOGIN_SUCCESS,
     LOGIN_FAILURE,
-    LOGIN_REQUEST
+    LOGIN_REQUEST,
+    LOGOUT
 } from '../consts';
 
-export function login(user, headers){
+export const login = (user, headers) => {
     return(dispatch) => {
-        dispatch(login_request);
+        dispatch(loginRequest);
         axios.post(
             `https://mysterious-reef-29460.herokuapp.com/api/v1/validate`,
             user, headers)
             .then(response => {
                 if(response.data.status === 'ok'){
-                    dispatch(login_success(response.data));
+                    dispatch(loginSuccess(response.data));
                 } else {
-                    dispatch(login_failure(response.data));
+                    dispatch(loginFailure(response.data));
                 }
             })
     }
 };
 
-export function login_request(){
+export const loginRequest = () => {
     return{
         type: LOGIN_REQUEST
     }
 }
 
-export function login_success(payload){
+export const loginSuccess = (payload) => {
     return{
         type: LOGIN_SUCCESS,
         payload
     }
 };
 
-export function login_failure(payload){
+export const loginFailure = (payload) => {
     return{
         type: LOGIN_FAILURE,
         payload
+    }
+};
+
+export const logout = () => {
+    return{
+        type: LOGOUT
     }
 };
 
