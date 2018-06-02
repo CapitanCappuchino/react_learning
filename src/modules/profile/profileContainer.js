@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect }          from 'react-redux';
 
-import { fetchProfile }    from '../../redux/actions/profileAction';
+import { fetchProfile }     from '../../redux/actions/profileAction';
 import Profile              from './profile';
 
 class ProfileContainer extends Component{
@@ -9,7 +9,6 @@ class ProfileContainer extends Component{
         return(
             <Profile 
                 profile={this.props.profile}
-                auth={this.props.auth}
                 fetchProfile={this.props.fetchProfile}
             />
         );
@@ -19,7 +18,6 @@ class ProfileContainer extends Component{
 const mapStateToProps = (state) => {
     return{
         profile: state.profile,
-        auth: state.auth
     }
 }
 
@@ -29,4 +27,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default  connect(null, mapDispatchToProps)(ProfileContainer);
+export default  connect(mapStateToProps, mapDispatchToProps)(ProfileContainer);

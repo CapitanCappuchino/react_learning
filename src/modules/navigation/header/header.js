@@ -4,8 +4,11 @@ import { Link, withRouter } from 'react-router-dom';
 import { connect }          from 'react-redux';
 
 import * as styles          from '../../../styles/consts';
+
 import TextButton           from '../../../elements/Buttons/textButton';
 import RoundedButton        from '../../../elements/Buttons/roundedButton';
+import DefaultLink          from '../../../elements/Links/defaultLink';
+
 import { logout }           from '../../../redux/actions/authAction';
 
 class DefaultHeader extends Component{
@@ -45,25 +48,25 @@ class DefaultHeader extends Component{
         return(
             <Element>
                 <TextButton>
-                    <StyledLink to='/'>
+                    <DefaultLink to='/'>
                         HOME
-                    </StyledLink>
+                    </DefaultLink>
                 </TextButton>
                 <TextButton>
-                    <StyledLink to='/profile'>
+                    <DefaultLink to='/profile'>
                         PROFILE
-                    </StyledLink>
+                    </DefaultLink>
                 </TextButton>
                 <TextButton>
-                    <StyledLink to='/news'>
+                    <DefaultLink to='/news'>
                         NEWS
-                    </StyledLink>
+                    </DefaultLink>
                 </TextButton>
                 <RoundedButton
                     onClick={this.handleLogoutButton}
                     text={isAutintificated
-                        ? <StyledLink inverted to='/'>LOGOUT</StyledLink>
-                        : <StyledLink inverted to='/login'>LOGIN</StyledLink>
+                        ? <DefaultLink inverted to='/'>LOGOUT</DefaultLink>
+                        : <DefaultLink inverted to='/login'>LOGIN</DefaultLink>
                     }>
                 </RoundedButton>
             </Element>
@@ -76,13 +79,6 @@ const Element = styled.div`
     display: flex;
     justify-content: space-around;
     background-color: ${styles.main};
-`;
-
-const StyledLink = styled(Link)`
-    text-decoration: none;
-    color: ${props => props.inverted 
-        ? styles.main
-        : styles.mainLight};
 `;
 
 const mapStateToProps = (state) => {
