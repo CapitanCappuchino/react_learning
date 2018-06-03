@@ -13,7 +13,7 @@ export const fetchProfile = () => {
         dispatch(profileRequest);
         axios.get(url)
             .then(response => {
-                console.log('RESPONSE', response);
+                console.log('PROFILE RESPONSE', response);
                 if(response.data.status === 'ok'){
                     dispatch(profileSuccess(response.data));
                 } else {
@@ -23,20 +23,20 @@ export const fetchProfile = () => {
     }
 }
 
-export const profileRequest = () => {
+const profileRequest = () => {
     return{
         type: PROFILE_REQUEST
     }
 }
 
-export const profileSuccess = (payload) => {
+const profileSuccess = (payload) => {
     return{
         type: PROFILE_SUCCESS,
         payload
     }
 }
 
-export const profileFailure = (payload) => {
+const profileFailure = (payload) => {
     return{
         type: PROFILE_FAILURE,
         payload

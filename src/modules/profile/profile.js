@@ -66,6 +66,8 @@ class Profile extends Component{
     }
 }
 
-const Element = styled.div``;
+const Element = styled.div`
+    margin: 10px;
+`;
 
 export default Profile;

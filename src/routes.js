@@ -21,14 +21,14 @@ class Routes extends Component {
   }
 
   static getDerivedStateFromProps = (nextProps, prevState) => {
-        if(nextProps.auth.isAutintificated && !prevState.isAutintificated){
-          return{
-            isAutintificated: true
-          }  
-        } else {
-            return null;
-        }
+    if(nextProps.auth.isAutintificated && !prevState.isAutintificated){
+      return{
+        isAutintificated: true
+      }  
+    } else {
+        return null;
     }
+  }
 
   render() {
     return (
@@ -37,14 +37,13 @@ class Routes extends Component {
           <Route exact path='/' component={ HomePage } />  
           <Route path='/login'  component={ AuthPage } />
           <Route path='/news'   component={ NewsPage } />
-          {this.props.auth.isAutintificated &&
           <PrivateRoute 
             condition={
               localStorage.getItem('isAutintificated') === 'true'
               && this.state.isAutintificated}
             path='/profile' 
             component={ ProfilePage }
-          />}
+          />
           </Switch>
       </div>
     );

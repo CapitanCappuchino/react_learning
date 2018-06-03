@@ -22,11 +22,21 @@ class LoginForm extends Component{
         this.storageData    = this.storageData.bind(this);
         this.renderResponse = this.renderResponse.bind(this);
     }
+
     componentDidUpdate = () => {
         if(this.props.auth.isFetching === false
             && !(localStorage.getItem('isAutintificated'))
             && !(this.state.isErrored)){
             this.renderResponse();
+        } 
+    }
+
+    static getDerivedStateFromProps = (nextProps, prevState) => {
+        if(nextProps.auth.isAutintificated && !prevState.isAutintificated){
+            nextProps.history.push('/profile');
+            return null;
+        } else {
+            return null;
         }
     }
 
@@ -38,8 +48,6 @@ class LoginForm extends Component{
 
             this.storageData(user);
             localStorage.setItem('isAutintificated', 'true');
-
-            this.props.history.push('/profile');
         } else {
             switch(this.props.auth.error){
                 case "wrong_email_or_password":
@@ -86,7 +94,7 @@ class LoginForm extends Component{
             <Form onSubmit={this.handleSubmit}>
                 <div>Email</div>
                 <TextInput 
-                    type="text"
+                    type="email"
                     name="email"
                     onChange={this.handleChange}
                     value={localStorage.getItem('email') || user.email}

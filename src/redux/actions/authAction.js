@@ -23,20 +23,20 @@ export const login = (user, headers) => {
     }
 };
 
-export const loginRequest = () => {
+const loginRequest = () => {
     return{
         type: LOGIN_REQUEST
     }
 }
 
-export const loginSuccess = (payload) => {
+const loginSuccess = (payload) => {
     return{
         type: LOGIN_SUCCESS,
         payload
     }
 };
 
-export const loginFailure = (payload) => {
+const loginFailure = (payload) => {
     return{
         type: LOGIN_FAILURE,
         payload

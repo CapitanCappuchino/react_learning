@@ -8,3 +8,8 @@ export const LOGOUT = 'LOGOUT';
 export const PROFILE_REQUEST = 'PROFILE_REQUEST';
 export const PROFILE_SUCCESS = 'PROFILE_SUCCESS';
 export const PROFILE_FAILURE = 'PROFILE_FAILURE';
+
+//NEWS
+export const NEWS_REQUEST = 'NEWS_REQUEST';
+export const NEWS_SUCCESS = 'NEWS_SUCCESS';
+export const NEWS_FAILURE = 'NEWS_FAILURE';
