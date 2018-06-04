@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter }       from 'react-router-dom';
-import axios                from 'axios';
 import styled               from 'styled-components';
+import { Grid, Row, Col }   from 'react-flexbox-grid';
 
 import TextInput            from '../../elements/Inputs/textInput';
 
@@ -91,38 +91,62 @@ class LoginForm extends Component{
     render(){
         const user = this.state.user;
         return(
-            <Form onSubmit={this.handleSubmit}>
-                <div>Email</div>
-                <TextInput 
-                    type="email"
-                    name="email"
-                    onChange={this.handleChange}
-                    value={localStorage.getItem('email') || user.email}
-                />
-                <div>Password</div>
-                <TextInput 
-                    type="password"
-                    name="password"
-                    onChange={this.handleChange}
-                    value={user.password}
-                />
-                <SubmitField>
-                    <TextInput 
-                        type="submit"
-                        name="submit"
-                    />
-                </SubmitField>
-            </Form>
+            <Grid>
+                <Form onSubmit={this.handleSubmit}>
+                    <InputRow>
+                        <Col lg={1} md={1}>
+                            <div>Email</div>
+                        </Col>
+                        <InputCol lg={3} md={3}> 
+                            <TextInput 
+                                type="email"
+                                name="email"
+                                onChange={this.handleChange}
+                                value={localStorage.getItem('email') || user.email}
+                            />
+                        </InputCol>
+                    </InputRow>
+                    <InputRow>
+                        <Col lg={1} md={1}>
+                            <div>Password</div>
+                        </Col>
+                        <InputCol lg={3} md={3}> 
+                            <TextInput 
+                                type="password"
+                                name="password"
+                                onChange={this.handleChange}
+                                value={user.password}
+                            />
+                        </InputCol>
+                    </InputRow>
+                    <Row>
+                        <InputCol lg={4} md={4}>
+                            <TextInput 
+                                type="submit"
+                                name="submit"
+                            />
+                        </InputCol>
+                    </Row>
+                </Form>
+            </Grid>
         );
     }
 }
 
 const Form = styled.form`
     margin: 10px;
+    margin-top: 20px;
 `;
 
-const SubmitField = styled.div`
-    margin-top: 5px;
+const InputRow = styled(Row)`
+    align-items: center
+    margin-bottom: 8px;
+`;
+
+const InputCol = styled(Col)`
+    display: flex;
+    justify-content: flex-end;
+    align-items: center
 `;
 
 export default withRouter(LoginForm);

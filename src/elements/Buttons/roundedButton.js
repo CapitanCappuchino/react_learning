@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
+import styled               from 'styled-components';
 
-import * as styles from '../../styles/consts';
-import TextButton from './textButton';
+import * as styles          from '../../styles/consts';
 
 class RoundedButton extends Component{
     render(){

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import styled               from 'styled-components';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter }       from 'react-router-dom';
 import { connect }          from 'react-redux';
+import { Grid, Row, Col }   from 'react-flexbox-grid';
 
 import * as styles          from '../../../styles/consts';
 
@@ -47,28 +48,36 @@ class DefaultHeader extends Component{
         const isAutintificated = this.state.isAutintificated;
         return(
             <Element>
-                <TextButton>
-                    <DefaultLink to='/'>
-                        HOME
-                    </DefaultLink>
-                </TextButton>
-                <TextButton>
-                    <DefaultLink to='/profile'>
-                        PROFILE
-                    </DefaultLink>
-                </TextButton>
-                <TextButton>
-                    <DefaultLink to='/news'>
-                        NEWS
-                    </DefaultLink>
-                </TextButton>
-                <RoundedButton
-                    onClick={this.handleLogoutButton}
-                    text={isAutintificated
-                        ? <DefaultLink inverted to='/'>LOGOUT</DefaultLink>
-                        : <DefaultLink inverted to='/login'>LOGIN</DefaultLink>
-                    }>
-                </RoundedButton>
+                <Grid fluid>
+                    <Row>
+                        <NavCol lg={10} md={10}>
+                            <TextButton>
+                                <DefaultLink to='/'>
+                                    HOME
+                                </DefaultLink>
+                            </TextButton>
+                            <TextButton>
+                                <DefaultLink to='/profile'>
+                                    PROFILE
+                                </DefaultLink>
+                            </TextButton>
+                            <TextButton>
+                                <DefaultLink to='/news'>
+                                    NEWS
+                                </DefaultLink>
+                            </TextButton>
+                        </NavCol>
+                        <LogoutCol lg={2} md={2}>
+                            <RoundedButton
+                                onClick={this.handleLogoutButton}
+                                text={isAutintificated
+                                    ? <DefaultLink inverted to='/'>LOGOUT</DefaultLink>
+                                    : <DefaultLink inverted to='/login'>LOGIN</DefaultLink>
+                                }>
+                            </RoundedButton>
+                        </LogoutCol>
+                    </Row>
+                </Grid>
             </Element>
         );
     }
@@ -76,9 +85,19 @@ class DefaultHeader extends Component{
 
 const Element = styled.div`
     width: 100%;
+    background-color: ${styles.main};
+`;
+
+const NavCol = styled(Col)`
     display: flex;
     justify-content: space-around;
-    background-color: ${styles.main};
+    align-items: center;
+`;
+
+const LogoutCol = styled(Col)`
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 10px;
 `;
 
 const mapStateToProps = (state) => {

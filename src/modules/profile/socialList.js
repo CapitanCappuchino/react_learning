@@ -14,7 +14,8 @@ class SocialList extends Component{
                     <img 
                         src={require('../../styles/assets/socialLogo/' + item.label + '.png')} 
                         height="50px"
-                        width="50px"/>
+                        width="50px"
+                        alt=""/>
                 </a>
             </SocialItem>)
         return(
