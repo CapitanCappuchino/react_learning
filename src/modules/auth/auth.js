@@ -1,25 +1,18 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
 
-import LoginForm from './loginForm';
+import LoginForm            from './loginForm';
 
 class Auth extends Component{
-    constructor(props){
-        super(props);
-    }
-
     render(){
         return(
-            <Element>
+            <div>
                 <LoginForm 
                     auth={this.props.auth}
                     login={this.props.login}
                 />   
-            </Element>
+            </div>
         );
     }
 }
-
-const Element = styled.div``;
 
 export default Auth;

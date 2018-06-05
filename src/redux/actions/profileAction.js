@@ -5,11 +5,12 @@ import{
     PROFILE_SUCCESS,
     PROFILE_FAILURE
 } from '../consts';
+import { BASE_URL } from '../../helpers/API';
 
 export const fetchProfile = () => {
     return(dispatch, getState) => {
         const user_id = getState().auth.id;
-        const url = 'https://mysterious-reef-29460.herokuapp.com/api/v1/user-info/' + user_id;
+        const url = BASE_URL + 'user-info/' + user_id;
         dispatch(profileRequest);
         axios.get(url)
             .then(response => {

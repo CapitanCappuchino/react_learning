@@ -15,16 +15,12 @@ class ProfileContainer extends Component{
     }
 }
 
-const mapStateToProps = (state) => {
-    return{
-        profile: state.profile,
-    }
-}
+const mapStateToProps = (state) => ({
+    profile: state.profile,
+})
 
-const mapDispatchToProps = (dispatch) => {
-    return{
-        fetchProfile: () => dispatch(fetchProfile())
-    }
-}
+const mapDispatchToProps = (dispatch) => ({
+    fetchProfile: () => dispatch(fetchProfile())
+})
 
 export default  connect(mapStateToProps, mapDispatchToProps)(ProfileContainer);

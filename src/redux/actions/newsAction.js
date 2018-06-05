@@ -5,11 +5,12 @@ import {
     NEWS_SUCCESS,
     NEWS_FAILURE
 } from '../consts';
+import { BASE_URL } from '../../helpers/API';
 
 export const fetchNews = () => {
     return(dispatch) => {
         dispatch(newsRequest);
-        axios.get(`https://mysterious-reef-29460.herokuapp.com/api/v1/news`)
+        axios.get(BASE_URL + `news`)
         .then(response => {
             console.log('NEWS RESPONSE', response);
             if(response.data.status === 'ok'){

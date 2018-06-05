@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import { connect }          from 'react-redux';
 
-import { login } from '../../redux/actions/authAction';
-
-import Auth from './auth';
+import { login }            from '../../redux/actions/authAction';
+import Auth                 from './auth';
 
 class AuthContainer extends Component{
     render(){
@@ -16,17 +15,12 @@ class AuthContainer extends Component{
     }
 }
 
-const mapStateToPros = (state) => {
-    console.log('STATE', state);
-    return{
-        auth: state.auth
-    }
-};
+const mapStateToPros = (state) => ({
+    auth: state.auth
+});
 
-const mapDispatchToProps = (dispatch) => {
-    return{
-        login: (user, headers) => dispatch(login(user, headers))
-    }
-}
+const mapDispatchToProps = (dispatch) => ({
+    login: (user) => dispatch(login(user))
+})
 
 export default connect(mapStateToPros, mapDispatchToProps)(AuthContainer);

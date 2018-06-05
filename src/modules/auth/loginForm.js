@@ -13,86 +13,49 @@ class LoginForm extends Component{
             user:{
                 'email':    '',
                 'password': ''
-            },
-            isAutintificated: false,
-            isErrored: false
+            }
         }
         this.handleChange   = this.handleChange.bind(this);
         this.handleSubmit   = this.handleSubmit.bind(this);
-        this.storageData    = this.storageData.bind(this);
-        this.renderResponse = this.renderResponse.bind(this);
+//        this.storageData    = this.storageData.bind(this);
     }
 
-    componentDidUpdate = () => {
-        if(this.props.auth.isFetching === false
-            && !(localStorage.getItem('isAutintificated'))
-            && !(this.state.isErrored)){
-            this.renderResponse();
-        } 
-    }
-
-    static getDerivedStateFromProps = (nextProps, prevState) => {
-        if(nextProps.auth.isAutintificated && !prevState.isAutintificated){
-            nextProps.history.push('/profile');
-            return null;
-        } else {
-            return null;
-        }
-    }
-
-    renderResponse = () => {
-        const user = this.state.user;
-        if(this.props.auth.id){
-            const isAutintificated = true;
-            this.setState({ isAutintificated });
-
-            this.storageData(user);
-            localStorage.setItem('isAutintificated', 'true');
-        } else {
-            switch(this.props.auth.error){
-                case "wrong_email_or_password":
-                    user.password = '';
-                    this.setState({ user });
-                    
-                    alert('Invalid email or password');
-                    break;
-                default:
-                    alert('something goes wrong');
-            }
-            const isErrored = true;
-            this.setState({ isErrored });
+    componentWillReceiveProps = (nextProps) => {
+        const { user } = this.state;
+        const { auth } = nextProps;
+        if(auth.isAutintificated){
+            this.props.history.push('/profile')       
+        } else if(auth.error){
+            user.password = '';
+            this.setState({ user });
         }
     }
 
     handleChange = (e) => {
         e.preventDefault();
-        const user = this.state.user;
-        user[e.target.name] = e.target.value;
+
+        const { user } = this.state;
+        user[e.currentTarget.name] = e.currentTarget.value;
         this.setState({ user })
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
 
-        const user = this.state.user;
-        const headers = {
-            'Content-Type': 'application/json'
-        };
-
-        this.props.login(user, headers);
-    }
-
-    storageData = (user) => {
-        Object.keys(user).map(function(key, index){
-            localStorage.setItem(key, user[key]);
-        });
+        const { user } = this.state;
+        if(!user.email || !user.password){
+            alert('Please input items');
+        } else {
+            this.props.login(user);
+        }
     }
 
     render(){
-        const user = this.state.user;
+        const { user } = this.state;
         return(
             <Grid>
                 <Form onSubmit={this.handleSubmit}>
+                    <div>{this.props.auth.error}</div>
                     <InputRow>
                         <Col lg={1} md={1}>
                             <div>Email</div>
@@ -132,6 +95,7 @@ class LoginForm extends Component{
         );
     }
 }
+
 
 const Form = styled.form`
     margin: 10px;

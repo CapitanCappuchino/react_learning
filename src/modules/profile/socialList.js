@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import * as styles          from '../../styles/consts';
 import styled               from 'styled-components';
 
 class SocialList extends Component{

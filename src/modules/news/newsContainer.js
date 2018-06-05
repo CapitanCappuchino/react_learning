@@ -15,16 +15,12 @@ class NewsContainer extends Component{
     }
 }
 
-const mapStateToProps = (state) => {
-    return{
-        news: state.news
-    }
-}
+const mapStateToProps = (state) => ({
+    news: state.news
+})
 
-const mapDispatchToProps = (dispatch) => {
-    return{
-        fetchNews: () => dispatch(fetchNews())
-    }
-}
+const mapDispatchToProps = (dispatch) => ({
+    fetchNews: () => dispatch(fetchNews())
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewsContainer);

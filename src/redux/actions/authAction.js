@@ -6,15 +6,17 @@ import {
     LOGIN_REQUEST,
     LOGOUT
 } from '../consts';
+import { BASE_URL, headers } from '../../helpers/API';
 
-export const login = (user, headers) => {
+export const login = (user) => {
     return(dispatch) => {
         dispatch(loginRequest);
-        axios.post(
-            `https://mysterious-reef-29460.herokuapp.com/api/v1/validate`,
+        axios.post(BASE_URL + `validate`,
             user, headers)
             .then(response => {
                 if(response.data.status === 'ok'){
+                    localStorage.setItem('isAutintificated', 'true'); 
+                    storageData(user);
                     dispatch(loginSuccess(response.data));
                 } else {
                     dispatch(loginFailure(response.data));
@@ -48,4 +50,14 @@ export const logout = () => {
         type: LOGOUT
     }
 };
+
+const storageData = (user) => {
+    Object.keys(user).map(function(key, index){
+        localStorage.setItem(key, user[key]);
+    });
+}
+
+
+
+
 

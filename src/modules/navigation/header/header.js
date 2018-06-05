@@ -16,36 +16,19 @@ class DefaultHeader extends Component{
     constructor(props){
         super(props);
 
-        this.state = {
-            isAutintificated: this.props.auth.isAutintificated
-        }
-
         this.handleLogoutButton = this.handleLogoutButton.bind(this);
     }
 
-    static getDerivedStateFromProps = (nextProps, prevState) => {
-        if(nextProps.auth.isAutintificated
-            && !prevState.isAutintificated){
-                return{
-                    isAutintificated: true
-                }
-        } else {
-            return null;
-        }
-    }
-
     handleLogoutButton = (e) => {
-        if(localStorage.getItem('isAutintificated') === 'true'){
+        console.log('pressed')
+        if(this.props.auth.isAutintificated){
             localStorage.clear();
-            this.setState({
-                isAutintificated: false
-            });
-            this.props.logout();
+            this.props.logout(); 
         }
     }
 
     render(){
-        const isAutintificated = this.state.isAutintificated;
+        const { isAutintificated } = this.props.auth;
         return(
             <Element>
                 <Grid fluid>
@@ -100,17 +83,13 @@ const LogoutCol = styled(Col)`
     padding-right: 10px;
 `;
 
-const mapStateToProps = (state) => {
-    return{
-        auth: state.auth
-    }
-}
+const mapStateToProps = (state) => ({
+    auth: state.auth
+});
 
-const mapDispatchToProps = (dispath) => {
-    return{
-        logout: () => dispath(logout())
-    }
-}
-
-const Header = withRouter(DefaultHeader);
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+const mapDispatchToProps = (dispath) => ({
+    logout: () => dispath(logout())
+})
+export default withRouter(
+    connect(mapStateToProps, mapDispatchToProps)(DefaultHeader)
+);

@@ -6,7 +6,7 @@ import * as styles          from '../../styles/consts';
 class TextInput extends Component{
     render(){
         return(
-            <Element  {...this.props}>
+            <Element {...this.props}>
                 {this.props.children}
             </Element>
         );
