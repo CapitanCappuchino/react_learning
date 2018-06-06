@@ -13,7 +13,7 @@ class LoginForm extends Component{
 
         this.state = {
             user:{
-                'email':    '',
+                'email':    localStorage.getItem('email') || '',
                 'password': ''
             }
         }
@@ -67,7 +67,7 @@ class LoginForm extends Component{
                                 type="email"
                                 name="email"
                                 onChange={this.handleChange}
-                                value={localStorage.getItem('email') || user.email}
+                                value={user.email}
                             />
                         </InputCol>
                     </InputRow>

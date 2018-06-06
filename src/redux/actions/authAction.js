@@ -15,6 +15,7 @@ export const login = (user) => {
         axios.post(BASE_URL + `validate`,
             user, headers)
             .then(response => {
+                console.log('AUTH RESPONSE', response);
                 if(response.data.status === 'ok'){
                     localStorage.setItem('isAutintificated', 'true'); 
                     storageData(user);
@@ -22,6 +23,9 @@ export const login = (user) => {
                 } else {
                     dispatch(loginFailure(response.data));
                 }
+            })
+            .catch(response => {
+                dispatch(loginFailure(response.data));
             })
     }
 };

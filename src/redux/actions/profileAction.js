@@ -21,6 +21,9 @@ export const fetchProfile = () => {
                     dispatch(profileFailure(response.data));
                 }
             })
+            .catch(response => {
+                dispatch(profileFailure(response.data));
+            })
     }
 }
 

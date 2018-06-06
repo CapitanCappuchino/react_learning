@@ -19,8 +19,12 @@ export const fetchNews = () => {
                 dispatch(newsFailure(response.data));
             }
         })
+        .catch(response => {
+            dispatch(newsFailure(response.data));
+        })
     }
 }
+
 
 const newsRequest = () => {
     return{
