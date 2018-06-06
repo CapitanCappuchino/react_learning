@@ -42,13 +42,7 @@ class LoginForm extends Component{
 
     handleSubmit = (e) => {
         e.preventDefault();
-
-        const { user } = this.state;
-        if(!user.email || !user.password){
-            alert('Please input items');
-        } else {
-            this.props.login(user);
-        }
+        this.props.submitForm(this.state.user);
     }
 
     render(){

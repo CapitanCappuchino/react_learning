@@ -4,12 +4,26 @@ import PropTypes            from 'prop-types';
 import LoginForm            from './loginForm';
 
 class Auth extends Component{
+    constructor(props){
+        super(props);
+
+        this.submitForm = this.submitForm.bind(this);
+    }
+
+    submitForm = (user) => {
+        if(!user.email || !user.password){
+            alert('Please input items');
+        } else {
+            this.props.login(user)
+        }
+    };
+
     render(){
         return(
             <div>
                 <LoginForm 
                     auth={this.props.auth}
-                    login={this.props.login}
+                    submitForm={this.submitForm}
                 />   
             </div>
         );
