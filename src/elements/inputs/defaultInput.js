@@ -3,7 +3,7 @@ import styled               from 'styled-components';
 
 import * as styles          from '../../styles/consts';
 
-class TextInput extends Component{
+class DefaultInput extends Component{
     render(){
         return(
             <Element {...this.props}>
@@ -24,4 +24,4 @@ const Element = styled.input`
     color:            ${styles.gray};
 `;
 
-export default TextInput;
+export default DefaultInput;

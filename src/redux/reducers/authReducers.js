@@ -8,7 +8,7 @@ import {
 const initialState = {
     id: '',
     error: '',
-    isFetching: true,
+    isFetching: false,
     isAutintificated: false
 };
 
@@ -33,7 +33,7 @@ export default function auth(state = initialState, action){
             return{...state,
                 id: '',
                 error: '',
-                isFetching: true,
+                isFetching: false,
                 isAutintificated: false
             }
         default:

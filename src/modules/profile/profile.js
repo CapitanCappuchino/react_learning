@@ -4,6 +4,7 @@ import styled               from 'styled-components';
 import LoadingPage          from '../../pages/loadingPage';
 import LanguageList         from './languageList';
 import SocialList           from './socialList';
+import Error                from '../../elements/resultDivs/error';
 
 class Profile extends Component{
     componentDidMount = () => {
@@ -14,9 +15,7 @@ class Profile extends Component{
         const { profile } = this.props;
         if(profile.error){
             return(
-                <Element>
-                    Sorry, but user not found
-                </Element>
+                <Error error={profile.error} />
             );
         } else if (profile.isFound){
             const data = profile.data.data;

@@ -6,9 +6,9 @@ import { Grid, Row, Col }   from 'react-flexbox-grid';
 
 import * as styles          from '../../../styles/consts';
 
-import TextButton           from '../../../elements/Buttons/textButton';
-import RoundedButton        from '../../../elements/Buttons/roundedButton';
-import DefaultLink          from '../../../elements/Links/defaultLink';
+import TextButton           from '../../../elements/buttons/textButton';
+import RoundedButton        from '../../../elements/buttons/roundedButton';
+import DefaultLink          from '../../../elements/links/defaultLink';
 
 import { logout }           from '../../../redux/actions/authAction';
 
@@ -20,7 +20,6 @@ class DefaultHeader extends Component{
     }
 
     handleLogoutButton = (e) => {
-        console.log('pressed')
         if(this.props.auth.isAutintificated){
             localStorage.clear();
             this.props.logout(); 

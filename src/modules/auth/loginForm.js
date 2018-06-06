@@ -3,7 +3,8 @@ import { withRouter }       from 'react-router-dom';
 import styled               from 'styled-components';
 import { Grid, Row, Col }   from 'react-flexbox-grid';
 
-import TextInput            from '../../elements/Inputs/textInput';
+import DefaultInput         from '../../elements/inputs/defaultInput';
+import Error                from '../../elements/resultDivs/error';
 
 class LoginForm extends Component{
     constructor(props){
@@ -17,7 +18,6 @@ class LoginForm extends Component{
         }
         this.handleChange   = this.handleChange.bind(this);
         this.handleSubmit   = this.handleSubmit.bind(this);
-//        this.storageData    = this.storageData.bind(this);
     }
 
     componentWillReceiveProps = (nextProps) => {
@@ -52,16 +52,17 @@ class LoginForm extends Component{
 
     render(){
         const { user } = this.state;
+        const { auth } = this.props;
         return(
             <Grid>
                 <Form onSubmit={this.handleSubmit}>
-                    <div>{this.props.auth.error}</div>
+                    <Error error={auth.error} />
                     <InputRow>
                         <Col lg={1} md={1}>
                             <div>Email</div>
                         </Col>
                         <InputCol lg={3} md={3}> 
-                            <TextInput 
+                            <DefaultInput 
                                 type="email"
                                 name="email"
                                 onChange={this.handleChange}
@@ -74,17 +75,18 @@ class LoginForm extends Component{
                             <div>Password</div>
                         </Col>
                         <InputCol lg={3} md={3}> 
-                            <TextInput 
+                            <DefaultInput 
                                 type="password"
                                 name="password"
                                 onChange={this.handleChange}
                                 value={user.password}
+                                disabled={auth.isFetching}
                             />
                         </InputCol>
                     </InputRow>
                     <Row>
                         <InputCol lg={4} md={4}>
-                            <TextInput 
+                            <DefaultInput 
                                 type="submit"
                                 name="submit"
                             />
@@ -95,7 +97,6 @@ class LoginForm extends Component{
         );
     }
 }
-
 
 const Form = styled.form`
     margin: 10px;

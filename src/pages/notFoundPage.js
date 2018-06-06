@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter }       from 'react-router-dom';
 
-import RoundedButton        from '../elements/Buttons/roundedButton';
+import RoundedButton        from '../elements/buttons/roundedButton';
 
 class NotFoundPage extends Component{
     constructor(props){
