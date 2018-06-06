@@ -19,12 +19,15 @@ class LoginForm extends Component{
         }
         this.handleChange   = this.handleChange.bind(this);
         this.handleSubmit   = this.handleSubmit.bind(this);
+        this.storageData    = this.storageData.bind(this);
     }
 
     componentWillReceiveProps = (nextProps) => {
         const { user } = this.state;
         const { auth } = nextProps;
         if(auth.isAutintificated){
+            localStorage.setItem('isAutintificated', 'true'); 
+            this.storageData(user);
             this.props.history.push('/profile')       
         } else if(auth.error){
             user.password = '';
@@ -43,6 +46,12 @@ class LoginForm extends Component{
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.submitForm(this.state.user);
+    }
+
+    storageData = (user) => {
+        Object.keys(user).map(function(key, index){
+            localStorage.setItem(key, user[key]);
+        });
     }
 
     render(){

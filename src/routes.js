@@ -10,7 +10,8 @@ import ProfilePage          from './pages/profilePage';
 import NewsPage             from './pages/newsPage';
 import AuthPage             from './pages/authPage';
 import HomePage             from './pages/homePage';
-import NotFoundPage         from './pages/notFoundPage'
+import NotFoundPage         from './pages/notFoundPage';
+import LoadingPage          from './pages/loadingPage';
 import { login }            from './redux/actions/authAction';
 
 class Routes extends Component {
@@ -34,9 +35,8 @@ class Routes extends Component {
           <Route path='/login'  component={ AuthPage } />
           <Route path='/news'   component={ NewsPage } />
           <PrivateRoute 
-            condition={
-              localStorage.getItem('isAutintificated') === 'true'
-              && auth.isAutintificated}
+            storageAuth={localStorage.getItem('isAutintificated') === 'true'}
+            stateAuth={auth.isAutintificated}
             path='/profile' 
             component={ ProfilePage }
           />
@@ -47,13 +47,15 @@ class Routes extends Component {
   }
 } 
 
-function PrivateRoute ({component: Component, condition, ...rest}) {
+function PrivateRoute ({component: Component, storageAuth, stateAuth, ...rest}) {
   return (
     <Route
       {...rest}
-      render={(props) => condition
+      render={(props) => storageAuth && stateAuth
         ? <Component {...props} />
-        : <Redirect to='/login' />}
+        : storageAuth 
+          ? <LoadingPage />
+          : <Redirect to='/login' />}
     />
   )
 }

@@ -17,8 +17,6 @@ export const login = (user) => {
             .then(response => {
                 console.log('AUTH RESPONSE', response);
                 if(response.data.status === 'ok'){
-                    localStorage.setItem('isAutintificated', 'true'); 
-                    storageData(user);
                     dispatch(loginSuccess(response.data));
                 } else {
                     dispatch(loginFailure(response.data));
@@ -63,11 +61,6 @@ export const logout = () => {
     }
 };
 
-const storageData = (user) => {
-    Object.keys(user).map(function(key, index){
-        localStorage.setItem(key, user[key]);
-    });
-}
 
 
 
