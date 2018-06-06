@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled               from 'styled-components';
+import PropTypes            from 'prop-types';
 
 class SocialList extends Component{
     render(){
@@ -21,6 +22,10 @@ class SocialList extends Component{
         );
     }
 }
+
+SocialList.PropTypes = {
+    social: PropTypes.array
+};
 
 const SocialItem = styled.span`
     margin: 5px;

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled               from 'styled-components';
+import PropTypes            from 'prop-types';
 
 import * as styles          from '../../styles/consts';
 
@@ -9,7 +10,7 @@ class RoundedButton extends Component{
             <Element {...this.props}>
                 <ButtonText>
                     { this.props.text }
-                    {this.props.children}
+                    { this.props.children }
                 </ButtonText>
             </Element>
         );
@@ -36,6 +37,10 @@ const ButtonText = styled.span`
     font-size:     ${styles.defaultFontSize};
     padding: 5px;
 `;
+
+RoundedButton.PropTypes = {
+    text: PropTypes.string
+};
 
 export default RoundedButton;
 

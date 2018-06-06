@@ -15,11 +15,11 @@ class TextButton extends Component{
 }
 
 const Element = styled.button`
-    border-color: transparent;
+    border-color:     transparent;
     background-color: transparent;
-    color: ${styles.mainLight};
-    font-family:   ${styles.defaultFontFamily};
-    font-size:     ${styles.defaultFontSize};
+    color:            ${styles.mainLight};
+    font-family:      ${styles.defaultFontFamily};
+    font-size:        ${styles.defaultFontSize};
 `;
 
 

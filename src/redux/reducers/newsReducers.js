@@ -5,7 +5,7 @@ import {
 } from '../consts';
 
 const initialState = {
-    data: '',
+    data: null,
     error: '',
     isFetching: false
 }
@@ -23,7 +23,7 @@ export default function news(state = initialState, action){
             }
         case NEWS_FAILURE:
             return{...state,
-                error: action.payload,
+                error: action.payload.message,
                 isFetching: false
             }
         default:

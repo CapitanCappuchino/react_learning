@@ -1,11 +1,12 @@
-import axios from 'axios';
+import axios                 from 'axios';
+import PropTypes             from 'prop-types';
 
 import { 
     LOGIN_SUCCESS,
     LOGIN_FAILURE,
     LOGIN_REQUEST,
     LOGOUT
-} from '../consts';
+}                            from '../consts';
 import { BASE_URL, headers } from '../../helpers/API';
 
 export const login = (user) => {
@@ -23,6 +24,13 @@ export const login = (user) => {
                 }
             })
     }
+};
+
+login.PropTypes = {
+    user: PropTypes.shape({
+        email: PropTypes.string,
+        password: PropTypes.string
+    })
 };
 
 const loginRequest = () => {

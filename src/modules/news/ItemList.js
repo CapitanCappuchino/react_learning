@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled               from 'styled-components';
 import { Grid, Row, Col }   from 'react-flexbox-grid';
+import PropTypes            from 'prop-types';
 
 class ItemList extends Component{
     render(){
@@ -25,6 +26,10 @@ class ItemList extends Component{
             <div> {ItemItems} </div>
         );
     }
+}
+
+ItemList.PropTypes = {
+    items: PropTypes.array
 }
 
 const Element = styled.div`

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes            from 'prop-types';
 
 class LanguageList extends Component{
     render(){
@@ -11,5 +12,9 @@ class LanguageList extends Component{
         );
     }
 }
+
+LanguageList.PropTypes = {
+    languages: PropTypes.array
+};
 
 export default LanguageList;

@@ -5,7 +5,7 @@ import{
 } from '../consts';
 
 const initialState = {
-    data: '',
+    data: null,
     error: '',
     isFetching: false,
     isFound: false

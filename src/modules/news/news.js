@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled               from 'styled-components';
+import PropTypes            from 'prop-types';
 
 import LoadingPage          from '../../pages/loadingPage';
 import ItemList             from './ItemList';
@@ -30,7 +31,16 @@ class News extends Component{
             );
         }
     }
-}                  
+} 
+
+News.PropTypes = {
+    news: PropTypes.shape({
+        data: PropTypes.array,
+        error: PropTypes.string,
+        isFetching: PropTypes.bool
+    }),
+    fetchNews: PropTypes.func
+}
 
 const Element = styled.div`
     margin: 10px;

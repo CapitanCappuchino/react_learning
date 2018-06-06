@@ -3,6 +3,7 @@ import styled               from 'styled-components';
 import { withRouter }       from 'react-router-dom';
 import { connect }          from 'react-redux';
 import { Grid, Row, Col }   from 'react-flexbox-grid';
+import PropTypes            from 'prop-types';
 
 import * as styles          from '../../../styles/consts';
 
@@ -63,6 +64,16 @@ class DefaultHeader extends Component{
             </Element>
         );
     }
+}
+
+DefaultHeader.PropTypes = {
+    auth: PropTypes.shape({
+        id: PropTypes.string,
+        error: PropTypes.string,
+        isFetchng: PropTypes.bool,
+        isAutintificated: PropTypes.bool
+    }),
+    logout: PropTypes.func
 }
 
 const Element = styled.div`

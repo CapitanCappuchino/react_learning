@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled               from 'styled-components';
+import PropTypes            from 'prop-types';
 
 import LoadingPage          from '../../pages/loadingPage';
 import LanguageList         from './languageList';
@@ -39,6 +40,16 @@ class Profile extends Component{
         }
     }
 }
+
+Profile.PropTypes = {
+    profile: PropTypes.shape({
+        data: PropTypes.object,
+        error: PropTypes.string,
+        isFetching: PropTypes.bool,
+        isFound: PropTypes.bool
+    }),
+    fetchProfile: PropTypes.func
+};
 
 const Element = styled.div`
     margin: 10px;

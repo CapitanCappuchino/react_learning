@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter }       from 'react-router-dom';
 import styled               from 'styled-components';
 import { Grid, Row, Col }   from 'react-flexbox-grid';
+import PropTypes            from 'prop-types';
 
 import DefaultInput         from '../../elements/inputs/defaultInput';
 import Error                from '../../elements/resultDivs/error';
@@ -97,6 +98,16 @@ class LoginForm extends Component{
         );
     }
 }
+
+LoginForm.PropTypes = {
+    auth: PropTypes.shape({
+        id: PropTypes.string,
+        error: PropTypes.string,
+        isFetchng: PropTypes.bool,
+        isAutintificated: PropTypes.bool
+    }),
+    login: PropTypes.func
+};
 
 const Form = styled.form`
     margin: 10px;
